@@ -1,18 +1,15 @@
 from PIL import Image
 
-full_img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel.jpg")
-full_img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel02.jpg")
+img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel.jpg")
+img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel02.jpg")
 
-img_1 = full_img_1.convert("L")
-img_2 = full_img_2.convert("L")
-
-print(img_1.format)
+#print(img_1.format)
 print(img_1.size)
-print(img_1.mode)
+#print(img_1.mode)
 
-print(img_2.format)
+#print(img_2.format)
 print(img_2.size)
-print(img_2.mode)
+#print(img_2.mode)
 
 #img_1.show()
 #img_2.show()
@@ -20,25 +17,69 @@ print(img_2.mode)
 size_1 = img_1.size
 size_2 = img_2.size
 
-list_img_1 = []
+upper_list_img_1 = []
+right_list_img_1 = []
+down_list_img_1 = []
+left_list_img_1 = []
 
-for i in range(1):
-    for j in range(size_1[0]):
-        in_pixel = img_1.getpixel((i, j))
-        list_img_1.append(in_pixel)
-print(list_img_1)
+upper_list_img_2 = []
+right_list_img_2 = []
+down_list_img_2 = []
+left_list_img_2 = []
 
-list_img_2 = []
+for i in range(size_1[0]):
+    in_pixel = img_1.getpixel((i, 0))
+    upper_list_img_1.append(in_pixel)
+print(upper_list_img_1)
+
+i = size_1[0]
+for j in range(size_1[1]):
+    in_pixel = img_1.getpixel((i-1, j))
+    right_list_img_1.append(in_pixel)
+print(right_list_img_1)
+
+j = size_1[1]
+for i in range(size_1[0]):
+    in_pixel = img_1.getpixel((i, j-1))
+    down_list_img_1.append(in_pixel)
+print(down_list_img_1)
+
+for j in range(size_1[1]):
+    in_pixel = img_1.getpixel((0, j))
+    left_list_img_1.append(in_pixel)
+print(left_list_img_1)
 
 for i in range(size_2[0]):
-    for j in range(1):
-        in_pixel = img_2.getpixel((i, j))
-        list_img_2.append(in_pixel)
+    in_pixel = img_2.getpixel((i, 0))
+    upper_list_img_2.append(in_pixel)
+print(upper_list_img_2)
 
-print(list_img_2)
+i = size_2[0]
+for j in range(size_2[1]):
+    in_pixel = img_2.getpixel((i-1, j))
+    right_list_img_2.append(in_pixel)
+print(right_list_img_2)
 
-list_11 =  img_1.getpixel((467, 468))
-list_22 =  img_2.getpixel((0, 0))
+j = size_2[1]
+for i in range(size_2[0]):
+    in_pixel = img_2.getpixel((i, j-1))
+    down_list_img_2.append(in_pixel)
+print(down_list_img_2)
 
-print(list_11)
-print(list_22)
+for j in range(size_2[1]):
+    in_pixel = img_2.getpixel((0, j))
+    left_list_img_2.append(in_pixel)
+print(left_list_img_2)
+
+#print(list_img_2)
+
+list_11 = img_1.getpixel((0,0))
+list_22 = img_1.getpixel((100, 0))
+
+#print(list_11)
+#print(list_22)
+
+#print(size_1[0])
+#print(size_1[1])
+
+#print(size_1[1])
