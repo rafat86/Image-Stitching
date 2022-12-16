@@ -74,3 +74,12 @@ list_22 = img_1.getpixel((100, 0))
 
 
 
+array_upper_list_img_1 = np.array(upper_list_img_1)
+array_right_list_img_1 = np.array(right_list_img_1)
+array_down_list_img_1 = np.array(down_list_img_1)
+array_left_list_img_1 = np.array(left_list_img_1)
+
+array_upper_list_img_2 = np.array(upper_list_img_2)
+array_right_list_img_2 = np.array(right_list_img_2)
+array_down_list_img_2 = np.array(down_list_img_2)
+array_left_list_img_2 = np.array(left_list_img_2)

@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
-img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Fr01.jpg")
-img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Fr02.jpg")
+img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel.jpg")
+img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel02.jpg")
 
 img_1.show()
 img_2.show()
@@ -26,14 +26,12 @@ for i in range(size_1[0]):
     in_pixel = img_1.getpixel((i, 0))
     upper_list_img_1.append(in_pixel)
 
-i = size_1[0]
 for j in range(size_1[1]):
-    in_pixel = img_1.getpixel((i-1, j))
+    in_pixel = img_1.getpixel((size_1[0] - 1, j))
     right_list_img_1.append(in_pixel)
 
-j = size_1[1]
 for i in range(size_1[0]):
-    in_pixel = img_1.getpixel((i, j-1))
+    in_pixel = img_1.getpixel((i, size_1[1] - 1))
     down_list_img_1.append(in_pixel)
 
 for j in range(size_1[1]):
@@ -44,19 +42,18 @@ for i in range(size_2[0]):
     in_pixel = img_2.getpixel((i, 0))
     upper_list_img_2.append(in_pixel)
 
-i = size_2[0]
 for j in range(size_2[1]):
-    in_pixel = img_2.getpixel((i-1, j))
+    in_pixel = img_2.getpixel((size_2[0] - 1, j))
     right_list_img_2.append(in_pixel)
 
-j = size_2[1]
 for i in range(size_2[0]):
-    in_pixel = img_2.getpixel((i, j-1))
+    in_pixel = img_2.getpixel((i, size_2[1] - 1))
     down_list_img_2.append(in_pixel)
 
 for j in range(size_2[1]):
     in_pixel = img_2.getpixel((0, j))
     left_list_img_2.append(in_pixel)
+
 
 array_upper_list_img_1 = np.array(upper_list_img_1)
 array_right_list_img_1 = np.array(right_list_img_1)
@@ -82,7 +79,6 @@ elif size_1[0] == size_2[0]:
 elif size_1[1] == size_2[1]:
         rms_min = min(rms(array_right_list_img_1, array_left_list_img_2),
                   rms(array_left_list_img_1, array_right_list_img_2))
-
 
 if rms_min == rms(array_upper_list_img_1, array_down_list_img_2):
     new_image = Image.new('RGB', (size_1[0],(2 * size_1[1])))
