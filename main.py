@@ -1,10 +1,9 @@
-import numpy
 import cv2
 import numpy as np
 from PIL import Image
 
-img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel.jpg")
-img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel02.jpg")
+img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Fr01.jpg")
+img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Fr02.jpg")
 
 img_1.show()
 img_2.show()
@@ -54,48 +53,40 @@ for j in range(size_2[1]):
     in_pixel = img_2.getpixel((0, j))
     left_list_img_2.append(in_pixel)
 
-
-array_upper_list_img_1 = np.array(upper_list_img_1)
-array_right_list_img_1 = np.array(right_list_img_1)
-array_down_list_img_1 = np.array(down_list_img_1)
-array_left_list_img_1 = np.array(left_list_img_1)
-
-array_upper_list_img_2 = np.array(upper_list_img_2)
-array_right_list_img_2 = np.array(right_list_img_2)
-array_down_list_img_2 = np.array(down_list_img_2)
-array_left_list_img_2 = np.array(left_list_img_2)
+def edges(list):
+    return np.array(list)
 
 def rms(array_1,array_2):
     return np.sqrt(((array_1 - array_2) ** 2).mean())
 
 if size_1[0] == size_2[0] == size_1[1] == size_2[1] :
-        rms_min = min(rms(array_upper_list_img_1, array_down_list_img_2),
-                      rms(array_down_list_img_1, array_upper_list_img_2),
-                      rms(array_right_list_img_1, array_left_list_img_2),
-                      rms(array_left_list_img_1, array_right_list_img_2))
+        rms_min = min(rms(edges(upper_list_img_1), edges(down_list_img_2)),
+                      rms(edges(down_list_img_1), edges(upper_list_img_2)),
+                      rms(edges(right_list_img_1), edges(left_list_img_2)),
+                      rms(edges(left_list_img_1),edges(right_list_img_2)))
 elif size_1[0] == size_2[0]:
-        rms_min = min(rms(array_upper_list_img_1, array_down_list_img_2),
-                  rms(array_down_list_img_1, array_upper_list_img_2))
+        rms_min = min(rms(edges(upper_list_img_1),edges(down_list_img_2)),
+                  rms(edges(down_list_img_1),edges(upper_list_img_2)))
 elif size_1[1] == size_2[1]:
-        rms_min = min(rms(array_right_list_img_1, array_left_list_img_2),
-                  rms(array_left_list_img_1, array_right_list_img_2))
+        rms_min = min(rms(edges(right_list_img_1), edges(left_list_img_2)),
+                  rms(edges(left_list_img_1), edges(right_list_img_2)))
 
-if rms_min == rms(array_upper_list_img_1, array_down_list_img_2):
+if rms_min == rms(edges(upper_list_img_1), edges(down_list_img_2)):
     new_image = Image.new('RGB', (size_1[0],(2 * size_1[1])))
     new_image.paste(img_2, (0, 0))
     new_image.paste(img_1, (0, size_2[1]))
     new_image.show()
-elif rms_min ==  rms(array_down_list_img_1, array_upper_list_img_2) :
+elif rms_min ==  rms(edges(down_list_img_1), edges(upper_list_img_2)) :
     new_image = Image.new('RGB', (size_1[0],(2 * size_1[1])))
     new_image.paste(img_1, (0, 0))
     new_image.paste(img_2, (0, size_1[1]))
     new_image.show()
-elif rms_min == rms(array_right_list_img_1, array_left_list_img_2) :
+elif rms_min == rms(edges(right_list_img_1), edges(left_list_img_2)):
     new_image = Image.new('RGB', (2 * size_1[0], size_1[1]))
     new_image.paste(img_1, (0, 0))
     new_image.paste(img_2, (size_1[0],0 ))
     new_image.show()
-elif rms_min == rms(array_left_list_img_1, array_right_list_img_2) :
+elif rms_min == rms(edges(left_list_img_1),edges(right_list_img_2)) :
     new_image = Image.new('RGB', (2 * size_1[0], size_1[1]))
     new_image.paste(img_2, (0, 0))
     new_image.paste(img_1, (size_1[0],0 ))
