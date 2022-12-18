@@ -1,6 +1,15 @@
 import numpy as np
 from PIL import Image
 
+
+def edges(pixel_list):
+    return np.array(pixel_list)
+
+
+def rms(array_1, array_2):
+    return np.sqrt(((array_1 - array_2) ** 2).mean())
+
+
 print(" 1-Eiffel Tower", "\n", "2-Jerusalem City ", "\n", "3-River ")
 
 reader_choice = int(input("chose a picture to stitch:"))
@@ -66,11 +75,6 @@ for j in range(size_2[1]):
     in_pixel = img_2.getpixel((0, j))
     left_list_img_2.append(in_pixel)
 
-    def edges(pixel_list):
-        return np.array(pixel_list)
-
-    def rms(array_1, array_2):
-        return np.sqrt(((array_1 - array_2) ** 2).mean())
 
 if size_1[0] == size_2[0] == size_1[1] == size_2[1]:
     rms_min = min(rms(edges(upper_list_img_1), edges(down_list_img_2)),
