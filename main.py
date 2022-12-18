@@ -9,14 +9,14 @@ while reader_choice not in range(4):
     reader_choice = int(input("chose a picture to stitch:"))
 
 if reader_choice == 1:
-    img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel.jpg")
-    img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/eifel02.jpg")
+    img_1 = Image.open("test images/eiffel.jpg")
+    img_2 = Image.open("test images/eiffel02.jpg")
 if reader_choice == 2:
-    img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Jerusalem01.jpg")
-    img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Jerusalem02.jpg")
+    img_1 = Image.open("test images/Jerusalem01.jpg")
+    img_2 = Image.open("test images/Jerusalem02.jpg")
 if reader_choice == 3:
-    img_1 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Fr01.jpg")
-    img_2 = Image.open("C:/Users/RAFAT/Documents/GitHub/HW3-Image-Stitching/test images/Fr02.jpg")
+    img_1 = Image.open("test images/Fr01.jpg")
+    img_2 = Image.open("test images/Fr02.jpg")
 
 img_1.show()
 img_2.show()
